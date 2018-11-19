@@ -1,0 +1,46 @@
+html(lang='en')
+  head
+    title Ride
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    link(href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css', rel='stylesheet')
+    link(href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css', rel='stylesheet')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', crossorigin='anonymous')
+    link(href='stylesheets/style.css', rel='stylesheet', type='text/css')
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js')
+    script(src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js')
+    script(src='javascripts/scripts.js')
+  body
+    .row
+      .column
+        form#location(role='form')
+        .row
+          .col-xs-12
+            .panel.panel-default
+              #scrollDiv.panel-body(style='max-height: 130px; overflow-y: auto')
+                h2 Get Nearby scooters
+              #lat
+                input#latitude.form-control(type='text', name='latitude', placeholder='Latitude', required='')
+              #long
+                input#longitute.form-control(type='text', name='longitute', placeholder='Longitude', required='')
+              #range
+                input#distance.form-control(type='text', name='range', placeholder='Within Distance', required='')
+              #lookup
+                button#search.btn.btn-lg.search-btn(type='submit', data-loading-text='Searching...') Find Scooters Now!
+                span         
+      .column
+        #map(style="height: 500px")
+
+        
+        script(type='text/javascript').
+            var map; var marker;
+            L.mapbox.accessToken = "pk.eyJ1IjoidGhhdHNoYWlsZXNoIiwiYSI6ImNqbTNiYmozaDBwcmMza211MW1lcDE2bDAifQ.EFGT7ZO0PRJd33zvTIpxwA";
+
+            // Load the map and set it to a given lat-lng
+            map = L.mapbox.map('map', 'mapbox.streets');
+            map.setView([1.355306, 103.843843], 15);
+
+            // Display a default marker
+            marker = L.marker([1.355306, 103.843843]).addTo(map)
+           
